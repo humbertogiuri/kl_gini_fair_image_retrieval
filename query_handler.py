@@ -4,9 +4,13 @@ import torch
 import pandas as pd
 import numpy as np
 import os
+from sklearn.metrics.pairwise import cosine_similarity
+#from feature_similarity import (
+    
+#)
 
 class QueryHandlerHAM:
-    def __init__(self, db_path: str) -> None:
+    def __init__(self, db_path: str, metadata_path: str) -> None:
         self.device = torch.device(
             'cuda' if torch.cuda.is_available() else 'cpu'
         )
@@ -15,8 +19,19 @@ class QueryHandlerHAM:
 
         self.feture_extractor = FeatureExtractor()
         self.db_dataframe = pd.read_pickle(db_path)
+        self.metadata_df = pd.read_csv(metadata_path)
 
-        print(self.db_dataframe.head(30))
+        self.db_dataframe = self.db_dataframe.merge(
+            self.metadata_df[["image_id", "sex"]], 
+            left_on="name", 
+            right_on="image_id", 
+            how="left"
+        )
+
+    
+    def retrieve_similar_images(self, query_features, top_k=5):
+        db_features = np.vstack(self.db_dataframe['features'].values)
+        print(db_features.shape)
 
     def calculate_all_distances(self, query):
         query_features = self.feture_extractor.extract_features(img=query)
@@ -62,8 +77,11 @@ class QueryHandlerHAM:
 if __name__ == '__main__':
     path_pkl_train = os.path.join("data", "HAM", "ham_train_features.pkl")
     path_pkl_test = os.path.join("data", "HAM", "ham_test_features.pkl")
+    path_metadata = os.path.join("data", "HAM", "HAM10000_metadata.csv")
 
-    query_handler = QueryHandlerHAM(path_pkl_train)
+    query_handler = QueryHandlerHAM(path_pkl_train, path_metadata)
+
+    query_handler.retrieve_similar_images(None)
     exit()
     query_path = (
         './data/NDB-ORIGINAL/test/noDysplasia/0022.png'
