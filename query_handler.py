@@ -78,7 +78,54 @@ class QueryHandlerHAM:
             if idx not in selected:
                 selected.append(idx)
 
-        print(similarites[selected], selected, db_sensitive_features[selected])
+        return self.db_dataframe["name"].to_numpy()[selected], db_sensitive_features[selected]
+    
+
+    def retrieve_similar_images_wheighted_fair_ranking(self, query_features, top_k=5, alpha=0.8):
+        """
+        Retrieve the top-k most similar images to a query, applying a weighted fairness ranking based on a sensitive attribute.
+        This function computes the cosine similarity between the query features and the database features, then combines this similarity
+        with a fairness bonus that promotes images belonging to a specified sensitive group (e.g., 'sex'). The final ranking is determined
+        by a weighted sum of similarity and fairness, controlled by the alpha parameter.
+
+        The combined weighted score for each image is calculated as:
+            combined_weighted_score = alpha * similarity + (1 - alpha) * fairness_bonus
+
+        Args:
+            query_features (np.ndarray): Feature vector representing the query image.
+            top_k (int, optional): Number of top results to return. Defaults to 5.
+            alpha (float, optional): Weighting factor between similarity and fairness (0 <= alpha <= 1). Defaults to 0.8.
+        Returns:
+            Tuple[np.ndarray, np.ndarray]: 
+            - Array of names of the top-k retrieved images.
+            - Array of sensitive attribute values corresponding to the top-k images.
+        Raises:
+            ValueError: If there are fewer than two unique groups in the sensitive attribute column.
+        Note:
+            This method assumes the sensitive attribute column is named 'sex' and exists in the database dataframe.
+        """
+        
+        db_features = np.vstack(self.db_dataframe["features"].values)
+        query_features = query_features.reshape(1, -1)
+
+        db_sensitive_features = self.db_dataframe["sex"].to_numpy()
+        groups_unique = list(set(db_sensitive_features))
+
+        if len(groups_unique) < 2:
+            raise ValueError("There must be at least two unique groups in the database for this method to work.")
+        
+        group_a, group_b = groups_unique[0], groups_unique[1]
+
+        similarities = cosine_similarity(query_features, db_features).flatten()
+        fairness_bonus = np.array([1 if g == group_b else 0 for g in db_sensitive_features])
+        fairness_bonus = fairness_bonus / fairness_bonus.max()
+
+        combined_wheighted_score = alpha * similarities + (1 - alpha) * fairness_bonus
+
+        ranked_indices = np.argsort(-combined_wheighted_score)
+
+        return self.db_dataframe["name"].to_numpy()[ranked_indices][:top_k], db_sensitive_features[ranked_indices][:top_k]
+
 
     def calculate_all_distances(self, query):
         query_features = self.feture_extractor.extract_features(img=query)
@@ -142,5 +189,6 @@ if __name__ == '__main__':
     query_handler = QueryHandlerHAM(path_pkl_train, path_metadata)
     
 
-    result = query_handler.retrieve_similar_images_minimum_group_quota(random_feature)
+    print(query_handler.retrieve_similar_images_minimum_group_quota(random_feature))
+    print(query_handler.retrieve_similar_images_wheighted_fair_ranking(random_feature))
 
