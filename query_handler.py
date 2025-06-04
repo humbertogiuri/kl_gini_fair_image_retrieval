@@ -206,6 +206,20 @@ class QueryHandlerHAM:
     
 
     def retrieve_similar_images_gini_fair_ranking(self, query_features, top_k=5, alpha=0.5):
+        """
+        Retrieves the top_k most similar images to a given query, ensuring a fair ranking between two sensitive groups using a Gini-based fairness constraint.
+        This function computes the cosine similarity between the query features and all images in the database. It then considers all possible subsets of the top 30 most similar images (according to cosine similarity) of size top_k. For each subset, it calculates a fairness score based on the Gini index of the sensitive attribute (e.g., 'sex') distribution within the subset, penalized by a factor alpha. The subset with the highest combined score (average similarity minus alpha times the Gini index) is selected as the final result, balancing both relevance and fairness between the two groups.
+        Args:
+            query_features (np.ndarray): Feature vector representing the query image.
+            top_k (int, optional): Number of images to retrieve. Defaults to 5.
+            alpha (float, optional): Weighting factor for the fairness penalty (higher values prioritize fairness more). Defaults to 0.5.
+        Returns:
+            Tuple[np.ndarray, np.ndarray]: 
+                - Array of image names corresponding to the selected images.
+                - Array of sensitive attribute values (e.g., 'sex') for the selected images.
+        Raises:
+            ValueError: If there are fewer than two unique groups in the sensitive attribute column of the database.
+        """
         db_features = np.vstack(self.db_dataframe["features"].values)
         query_features = query_features.reshape(1, -1)
 
@@ -244,6 +258,20 @@ class QueryHandlerHAM:
 
 
     def retrieve_similar_images_entropy_fair_ranking(self, query_features, top_k=5, alpha=0.5):
+        """
+        Retrieves the top-k most similar images to a given query, balancing both similarity and fairness between two sensitive groups using entropy-based ranking.
+        This function computes cosine similarities between the query features and all database features, selects the top 30 most similar candidates, and then evaluates all possible combinations of k images from these candidates. For each combination, it calculates a fairness score based on the normalized entropy of the sensitive attribute distribution (e.g., 'sex') and combines it with the average similarity score. The combination with the highest combined score (similarity + alpha * fairness_entropy) is returned, ensuring both relevance and fair representation of the sensitive groups.
+        Args:
+            query_features (np.ndarray): Feature vector of the query image, shape (n_features,).
+            top_k (int, optional): Number of images to retrieve. Defaults to 5.
+            alpha (float, optional): Weighting factor for the fairness entropy in the combined score. Defaults to 0.5.
+        Returns:
+            Tuple[np.ndarray, np.ndarray]: 
+                - Array of image names corresponding to the selected images.
+                - Array of sensitive attribute values (e.g., 'sex') for the selected images.
+        Raises:
+            ValueError: If there are fewer than two unique sensitive groups in the database.
+        """
         db_features = np.vstack(self.db_dataframe["features"].values)
         query_features = query_features.reshape(1, -1)
 
