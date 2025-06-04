@@ -48,8 +48,8 @@ class QueryHandlerHAM:
         """
         db_features = np.vstack(self.db_dataframe["features"].values)
         query_features = query_features.reshape(1, -1)
-
         db_sensitive_features = self.db_dataframe["sex"].to_numpy()
+        db_class = self.db_dataframe["class"].to_numpy()
 
         groups_unique = list(set(db_sensitive_features))
 
@@ -81,7 +81,7 @@ class QueryHandlerHAM:
             if idx not in selected:
                 selected.append(idx)
 
-        return self.db_dataframe["name"].to_numpy()[selected], db_sensitive_features[selected]
+        return self.db_dataframe["name"].to_numpy()[selected], db_sensitive_features[selected], db_class[selected]
     
 
     def retrieve_similar_images_wheighted_fair_ranking(self, query_features, top_k=5, alpha=0.8):
@@ -110,7 +110,7 @@ class QueryHandlerHAM:
         
         db_features = np.vstack(self.db_dataframe["features"].values)
         query_features = query_features.reshape(1, -1)
-
+        db_class = self.db_dataframe["class"].to_numpy()
         db_sensitive_features = self.db_dataframe["sex"].to_numpy()
         groups_unique = list(set(db_sensitive_features))
 
@@ -127,13 +127,17 @@ class QueryHandlerHAM:
 
         ranked_indices = np.argsort(-combined_wheighted_score)
 
-        return self.db_dataframe["name"].to_numpy()[ranked_indices][:top_k], db_sensitive_features[ranked_indices][:top_k]
+        return self.db_dataframe["name"].to_numpy()[ranked_indices][:top_k], db_sensitive_features[ranked_indices][:top_k], db_class[ranked_indices][:top_k]
 
     def retrieve_similar_images_kl_fair_ranking(self, query_features, top_k=5, alpha=0.5):
         """
-        Esta função recupera as imagens mais similares a uma consulta, balanceando similaridade e equidade entre dois grupos sensíveis usando uma métrica baseada em divergência KL.
+        Esta função recupera as imagens mais similares a uma consulta, balanceando similaridade e equidade entre dois grupos 
+        sensíveis usando uma métrica baseada em divergência KL.
 
-        A função busca garantir que o conjunto de imagens retornadas seja não apenas similar à consulta (com base na similaridade do cosseno), mas também justo em relação à distribuição dos grupos sensíveis (por exemplo, sexo). Para isso, ela utiliza a divergência KL para medir o quão distante a distribuição dos grupos no conjunto selecionado está da distribuição ideal (balanceada).
+        A função busca garantir que o conjunto de imagens retornadas seja não apenas similar à consulta (com base na 
+        similaridade do cosseno), mas também justo em relação à distribuição dos grupos sensíveis (por exemplo, sexo). 
+        Para isso, ela utiliza a divergência KL para medir o quão distante a distribuição dos grupos no conjunto 
+        selecionado está da distribuição ideal (balanceada).
 
         Funcionamento:
             1. Calcula a similaridade do cosseno entre a imagem de consulta e todas as imagens do banco.
@@ -148,7 +152,8 @@ class QueryHandlerHAM:
         Parâmetros:
             query_features (np.ndarray): Vetor de características da imagem de consulta.
             top_k (int, opcional): Número de imagens a serem recuperadas. Padrão é 5.
-            alpha (float, opcional): Parâmetro de balanceamento entre similaridade e equidade. Valores maiores priorizam mais a equidade. Padrão é 0.5.
+            alpha (float, opcional): Parâmetro de balanceamento entre similaridade e equidade. Valores maiores priorizam mais a 
+            equidade. Padrão é 0.5.
 
         Retorno:
             Tuple[np.ndarray, np.ndarray]:
@@ -164,7 +169,7 @@ class QueryHandlerHAM:
         """
         db_features = np.vstack(self.db_dataframe["features"].values)
         query_features = query_features.reshape(1, -1)
-
+        db_class = self.db_dataframe["class"].to_numpy()
         db_sensitive_features = self.db_dataframe["sex"].to_numpy()
         groups_unique = list(set(db_sensitive_features))
 
@@ -202,13 +207,19 @@ class QueryHandlerHAM:
                 best_score = score
                 best_set = subset
 
-        return self.db_dataframe["name"].to_numpy()[best_set], db_sensitive_features[best_set]
+        return self.db_dataframe["name"].to_numpy()[best_set], db_sensitive_features[best_set], db_class[best_set]
     
 
     def retrieve_similar_images_gini_fair_ranking(self, query_features, top_k=5, alpha=0.5):
         """
-        Retrieves the top_k most similar images to a given query, ensuring a fair ranking between two sensitive groups using a Gini-based fairness constraint.
-        This function computes the cosine similarity between the query features and all images in the database. It then considers all possible subsets of the top 30 most similar images (according to cosine similarity) of size top_k. For each subset, it calculates a fairness score based on the Gini index of the sensitive attribute (e.g., 'sex') distribution within the subset, penalized by a factor alpha. The subset with the highest combined score (average similarity minus alpha times the Gini index) is selected as the final result, balancing both relevance and fairness between the two groups.
+        Retrieves the top_k most similar images to a given query, ensuring a fair ranking between two sensitive 
+        groups using a Gini-based fairness constraint.
+        This function computes the cosine similarity between the query features and all images in the database. 
+        It then considers all possible subsets of the top 30 most similar images (according to cosine similarity) of 
+        size top_k. For each subset, it calculates a fairness score based on the Gini index of the sensitive 
+        attribute (e.g., 'sex') distribution within the subset, penalized by a factor alpha. The subset with the 
+        highest combined score (average similarity minus alpha times the Gini index) is selected as the final result, 
+        balancing both relevance and fairness between the two groups.
         Args:
             query_features (np.ndarray): Feature vector representing the query image.
             top_k (int, optional): Number of images to retrieve. Defaults to 5.
@@ -222,7 +233,7 @@ class QueryHandlerHAM:
         """
         db_features = np.vstack(self.db_dataframe["features"].values)
         query_features = query_features.reshape(1, -1)
-
+        db_class = self.db_dataframe["class"].to_numpy()
         db_sensitive_features = self.db_dataframe["sex"].to_numpy()
         groups_unique = list(set(db_sensitive_features))
 
@@ -254,13 +265,19 @@ class QueryHandlerHAM:
                 best_score = score
                 best_set = subset
             
-        return self.db_dataframe["name"].to_numpy()[best_set], db_sensitive_features[best_set]
+        return self.db_dataframe["name"].to_numpy()[best_set], db_sensitive_features[best_set], db_class[best_set]
 
 
     def retrieve_similar_images_entropy_fair_ranking(self, query_features, top_k=5, alpha=0.5):
         """
-        Retrieves the top-k most similar images to a given query, balancing both similarity and fairness between two sensitive groups using entropy-based ranking.
-        This function computes cosine similarities between the query features and all database features, selects the top 30 most similar candidates, and then evaluates all possible combinations of k images from these candidates. For each combination, it calculates a fairness score based on the normalized entropy of the sensitive attribute distribution (e.g., 'sex') and combines it with the average similarity score. The combination with the highest combined score (similarity + alpha * fairness_entropy) is returned, ensuring both relevance and fair representation of the sensitive groups.
+        Retrieves the top-k most similar images to a given query, balancing both similarity and fairness between 
+        two sensitive groups using entropy-based ranking.
+        This function computes cosine similarities between the query features and all database features, selects 
+        the top 30 most similar candidates, and then evaluates all possible combinations of k images from these candidates. 
+        For each combination, it calculates a fairness score based on the normalized entropy of the sensitive attribute 
+        distribution (e.g., 'sex') and combines it with the average similarity score. The combination with the highest 
+        combined score (similarity + alpha * fairness_entropy) is returned, ensuring both relevance and fair representation 
+        of the sensitive groups.
         Args:
             query_features (np.ndarray): Feature vector of the query image, shape (n_features,).
             top_k (int, optional): Number of images to retrieve. Defaults to 5.
@@ -274,7 +291,7 @@ class QueryHandlerHAM:
         """
         db_features = np.vstack(self.db_dataframe["features"].values)
         query_features = query_features.reshape(1, -1)
-
+        db_class = self.db_dataframe["class"].to_numpy()
         db_sensitive_features = self.db_dataframe["sex"].to_numpy()
         groups_unique = list(set(db_sensitive_features))
 
@@ -307,7 +324,7 @@ class QueryHandlerHAM:
                 best_score = score
                 best_set = subset
         
-        return self.db_dataframe["name"].to_numpy()[best_set], db_sensitive_features[best_set]
+        return self.db_dataframe["name"].to_numpy()[best_set], db_sensitive_features[best_set], db_class[best_set]
     
 
     def normalized_entropy(self, counts):
@@ -385,36 +402,40 @@ if __name__ == '__main__':
     random_row = df_test.sample(n=1, random_state=42)
     random_feature = random_row["features"].values[0]
 
+    print(f"Image Query: {random_row['name'].values[0]}")
+    print(f"Image Query Class: {random_row['class'].values[0]}")
+    print(f"Image Query Sex: {random_row['sex'].values[0]}")
+    print("-" * 40)
+
     query_handler = QueryHandlerHAM(path_pkl_train, path_metadata)
-    
 
-    names, groups = query_handler.retrieve_similar_images_minimum_group_quota(random_feature)
+    names, groups, classes = query_handler.retrieve_similar_images_minimum_group_quota(random_feature)
     print("Minimum Group Quota Results:")
-    for name, group in zip(names, groups):
-        print(f"Image: {name}, Group: {group}")
+    for name, group, clas in zip(names, groups, classes):
+        print(f"Image: {name}, Group: {group}, Class: {clas}")
     print("-" * 40)
 
-    names, groups = query_handler.retrieve_similar_images_wheighted_fair_ranking(random_feature)
+    names, groups, classes = query_handler.retrieve_similar_images_wheighted_fair_ranking(random_feature)
     print("Weighted Fair Ranking Results:")
-    for name, group in zip(names, groups):
-        print(f"Image: {name}, Group: {group}")
+    for name, group, clas in zip(names, groups, classes):
+        print(f"Image: {name}, Group: {group}, Class: {clas}")
     print("-" * 40)
 
-    names, groups = query_handler.retrieve_similar_images_kl_fair_ranking(random_feature)
+    names, groups, classes = query_handler.retrieve_similar_images_kl_fair_ranking(random_feature)
     print("KL Fair Ranking Results:")
-    for name, group in zip(names, groups):
-        print(f"Image: {name}, Group: {group}")
+    for name, group, clas in zip(names, groups, classes):
+        print(f"Image: {name}, Group: {group}, Class: {clas}")
     print("-" * 40)
 
-    names, groups = query_handler.retrieve_similar_images_gini_fair_ranking(random_feature)
+    names, groups, classes = query_handler.retrieve_similar_images_gini_fair_ranking(random_feature)
     print("Gini Fair Ranking Results:")
-    for name, group in zip(names, groups):
-        print(f"Image: {name}, Group: {group}")
+    for name, group, clas in zip(names, groups, classes):
+        print(f"Image: {name}, Group: {group}, Class: {clas}")
     print("-" * 40)
 
-    names, groups = query_handler.retrieve_similar_images_entropy_fair_ranking(random_feature)
+    names, groups, classes = query_handler.retrieve_similar_images_entropy_fair_ranking(random_feature)
     print("Entropy Fair Ranking Results:")
-    for name, group in zip(names, groups):
-        print(f"Image: {name}, Group: {group}")
+    for name, group, clas in zip(names, groups, classes):
+        print(f"Image: {name}, Group: {group}, Class: {clas}")
     print("-" * 40)
 
