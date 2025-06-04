@@ -1,0 +1,201 @@
+name_query,label_query,sensitivy_group_query,names_results,labels_results,sensitivity_groups_results
+ISIC_0026011,nv,male,"['ISIC_0026648' 'ISIC_0024649' 'ISIC_0024492' 'ISIC_0025894'
+ 'ISIC_0026832']",['nv' 'nv' 'nv' 'nv' 'nv'],['female' 'female' 'male' 'female' 'male']
+ISIC_0027644,nv,male,"['ISIC_0028079' 'ISIC_0029081' 'ISIC_0025271' 'ISIC_0024951'
+ 'ISIC_0027905']",['bcc' 'mel' 'nv' 'mel' 'bkl'],['female' 'male' 'male' 'male' 'female']
+ISIC_0027656,nv,male,"['ISIC_0028904' 'ISIC_0027357' 'ISIC_0024976' 'ISIC_0025460'
+ 'ISIC_0026306']",['nv' 'nv' 'nv' 'nv' 'nv'],['female' 'male' 'male' 'female' 'male']
+ISIC_0027040,nv,female,"['ISIC_0028296' 'ISIC_0025765' 'ISIC_0024919' 'ISIC_0026235'
+ 'ISIC_0024427']",['nv' 'nv' 'nv' 'nv' 'nv'],['male' 'female' 'female' 'female' 'male']
+ISIC_0025207,nv,female,"['ISIC_0025556' 'ISIC_0028853' 'ISIC_0029292' 'ISIC_0025894'
+ 'ISIC_0024628']",['nv' 'nv' 'nv' 'nv' 'nv'],['female' 'female' 'male' 'female' 'male']
+ISIC_0027173,nv,female,"['ISIC_0026020' 'ISIC_0027429' 'ISIC_0025921' 'ISIC_0024990'
+ 'ISIC_0028797']",['nv' 'nv' 'nv' 'nv' 'bkl'],['female' 'male' 'female' 'female' 'male']
+ISIC_0026761,nv,female,"['ISIC_0028429' 'ISIC_0026705' 'ISIC_0024459' 'ISIC_0029272'
+ 'ISIC_0025520']",['nv' 'nv' 'mel' 'mel' 'mel'],['female' 'female' 'male' 'female' 'male']
+ISIC_0025962,nv,female,"['ISIC_0028624' 'ISIC_0028193' 'ISIC_0024780' 'ISIC_0025251'
+ 'ISIC_0026345']",['nv' 'nv' 'nv' 'nv' 'nv'],['male' 'female' 'male' 'female' 'female']
+ISIC_0028417,nv,female,"['ISIC_0025930' 'ISIC_0025463' 'ISIC_0025003' 'ISIC_0028141'
+ 'ISIC_0026751']",['nv' 'nv' 'nv' 'nv' 'nv'],['female' 'male' 'female' 'female' 'male']
+ISIC_0026477,bkl,female,"['ISIC_0027797' 'ISIC_0026711' 'ISIC_0028995' 'ISIC_0028276'
+ 'ISIC_0027201']",['mel' 'nv' 'bkl' 'nv' 'nv'],['female' 'male' 'female' 'female' 'male']
+ISIC_0028081,nv,female,"['ISIC_0026294' 'ISIC_0025082' 'ISIC_0027123' 'ISIC_0026585'
+ 'ISIC_0025645']",['nv' 'nv' 'nv' 'nv' 'nv'],['female' 'female' 'female' 'male' 'male']
+ISIC_0028303,bcc,female,"['ISIC_0024897' 'ISIC_0028815' 'ISIC_0029040' 'ISIC_0027714'
+ 'ISIC_0025610']",['bcc' 'bcc' 'bkl' 'nv' 'nv'],['female' 'female' 'male' 'female' 'male']
+ISIC_0026838,nv,female,"['ISIC_0025556' 'ISIC_0024628' 'ISIC_0027705' 'ISIC_0027483'
+ 'ISIC_0027685']",['nv' 'nv' 'nv' 'nv' 'nv'],['female' 'male' 'female' 'female' 'male']
+ISIC_0029189,nv,female,"['ISIC_0028912' 'ISIC_0024895' 'ISIC_0024563' 'ISIC_0027875'
+ 'ISIC_0029293']",['nv' 'nv' 'nv' 'bkl' 'nv'],['female' 'female' 'female' 'male' 'male']
+ISIC_0028903,nv,female,"['ISIC_0027311' 'ISIC_0027961' 'ISIC_0025253' 'ISIC_0026818'
+ 'ISIC_0028679']",['nv' 'nv' 'nv' 'nv' 'nv'],['male' 'male' 'male' 'female' 'female']
+ISIC_0028669,nv,male,"['ISIC_0026602' 'ISIC_0024713' 'ISIC_0025307' 'ISIC_0027941'
+ 'ISIC_0025361']",['nv' 'nv' 'nv' 'nv' 'nv'],['female' 'female' 'male' 'male' 'female']
+ISIC_0028041,mel,male,"['ISIC_0029301' 'ISIC_0027774' 'ISIC_0029291' 'ISIC_0028565'
+ 'ISIC_0025016']",['bkl' 'bcc' 'bkl' 'mel' 'bkl'],['male' 'female' 'male' 'female' 'male']
+ISIC_0028572,nv,male,"['ISIC_0026920' 'ISIC_0025624' 'ISIC_0024609' 'ISIC_0025965'
+ 'ISIC_0029253']",['nv' 'nv' 'nv' 'nv' 'nv'],['female' 'male' 'male' 'male' 'female']
+ISIC_0027775,nv,male,"['ISIC_0028896' 'ISIC_0028547' 'ISIC_0026695' 'ISIC_0026536'
+ 'ISIC_0028021']",['nv' 'nv' 'nv' 'nv' 'nv'],['male' 'male' 'male' 'female' 'female']
+ISIC_0024451,nv,male,"['ISIC_0025720' 'ISIC_0026585' 'ISIC_0025087' 'ISIC_0027936'
+ 'ISIC_0027701']",['nv' 'nv' 'nv' 'nv' 'nv'],['male' 'male' 'female' 'male' 'female']
+ISIC_0026234,nv,female,"['ISIC_0027166' 'ISIC_0029150' 'ISIC_0027703' 'ISIC_0025857'
+ 'ISIC_0024548']",['nv' 'nv' 'nv' 'nv' 'nv'],['female' 'female' 'female' 'male' 'male']
+ISIC_0028258,bkl,female,"['ISIC_0024909' 'ISIC_0028022' 'ISIC_0028727' 'ISIC_0024705'
+ 'ISIC_0027202']",['bkl' 'mel' 'nv' 'bkl' 'bkl'],['female' 'female' 'male' 'female' 'male']
+ISIC_0024818,nv,male,"['ISIC_0025113' 'ISIC_0027615' 'ISIC_0028815' 'ISIC_0025781'
+ 'ISIC_0028069']",['bkl' 'akiec' 'bcc' 'bkl' 'mel'],['female' 'male' 'female' 'male' 'female']
+ISIC_0026041,nv,female,"['ISIC_0028893' 'ISIC_0026582' 'ISIC_0025203' 'ISIC_0027180'
+ 'ISIC_0029116']",['nv' 'nv' 'nv' 'nv' 'nv'],['male' 'male' 'male' 'female' 'female']
+ISIC_0027745,df,female,"['ISIC_0028858' 'ISIC_0025353' 'ISIC_0027864' 'ISIC_0028021'
+ 'ISIC_0026896']",['bcc' 'nv' 'nv' 'nv' 'nv'],['male' 'male' 'male' 'female' 'female']
+ISIC_0025394,mel,male,"['ISIC_0027987' 'ISIC_0028998' 'ISIC_0026307' 'ISIC_0026303'
+ 'ISIC_0025190']",['nv' 'nv' 'nv' 'nv' 'nv'],['male' 'male' 'male' 'male' 'female']
+ISIC_0024761,bkl,male,"['ISIC_0024758' 'ISIC_0025031' 'ISIC_0028928' 'ISIC_0024632'
+ 'ISIC_0026174']",['bkl' 'bcc' 'bcc' 'bcc' 'bkl'],['female' 'male' 'female' 'female' 'male']
+ISIC_0029304,nv,male,"['ISIC_0029069' 'ISIC_0028004' 'ISIC_0024501' 'ISIC_0028936'
+ 'ISIC_0026632']",['nv' 'nv' 'nv' 'nv' 'nv'],['female' 'male' 'male' 'male' 'female']
+ISIC_0028721,nv,male,"['ISIC_0028729' 'ISIC_0028074' 'ISIC_0026967' 'ISIC_0028187'
+ 'ISIC_0028129']",['nv' 'nv' 'bkl' 'nv' 'nv'],['female' 'male' 'female' 'female' 'male']
+ISIC_0028954,nv,female,"['ISIC_0026025' 'ISIC_0026026' 'ISIC_0025859' 'ISIC_0024919'
+ 'ISIC_0025048']",['nv' 'nv' 'nv' 'nv' 'nv'],['male' 'male' 'female' 'female' 'male']
+ISIC_0024633,nv,male,"['ISIC_0025059' 'ISIC_0028391' 'ISIC_0025532' 'ISIC_0028240'
+ 'ISIC_0027252']",['nv' 'nv' 'nv' 'nv' 'nv'],['female' 'female' 'female' 'male' 'male']
+ISIC_0026567,bkl,female,"['ISIC_0025648' 'ISIC_0025444' 'ISIC_0027554' 'ISIC_0027186'
+ 'ISIC_0024976']",['nv' 'nv' 'nv' 'nv' 'nv'],['male' 'female' 'female' 'female' 'male']
+ISIC_0026715,nv,female,"['ISIC_0025203' 'ISIC_0027016' 'ISIC_0026582' 'ISIC_0027566'
+ 'ISIC_0025288']",['nv' 'nv' 'nv' 'nv' 'nv'],['male' 'female' 'male' 'male' 'female']
+ISIC_0025871,nv,male,"['ISIC_0025652' 'ISIC_0026318' 'ISIC_0026819' 'ISIC_0024986'
+ 'ISIC_0024594']",['nv' 'nv' 'nv' 'nv' 'nv'],['female' 'male' 'female' 'female' 'male']
+ISIC_0024816,nv,female,"['ISIC_0026628' 'ISIC_0024713' 'ISIC_0025912' 'ISIC_0029050'
+ 'ISIC_0024661']",['nv' 'nv' 'nv' 'nv' 'nv'],['male' 'female' 'male' 'female' 'female']
+ISIC_0029213,bkl,male,"['ISIC_0026347' 'ISIC_0028931' 'ISIC_0025954' 'ISIC_0026690'
+ 'ISIC_0024575']",['nv' 'bkl' 'df' 'mel' 'akiec'],['male' 'male' 'male' 'male' 'female']
+ISIC_0027243,nv,female,"['ISIC_0025839' 'ISIC_0027059' 'ISIC_0025232' 'ISIC_0026828'
+ 'ISIC_0028725']",['nv' 'nv' 'nv' 'nv' 'nv'],['female' 'female' 'male' 'male' 'male']
+ISIC_0026474,nv,male,"['ISIC_0024368' 'ISIC_0025854' 'ISIC_0028427' 'ISIC_0027511'
+ 'ISIC_0025190']",['nv' 'nv' 'nv' 'nv' 'nv'],['male' 'male' 'male' 'male' 'female']
+ISIC_0028712,nv,female,"['ISIC_0028986' 'ISIC_0028277' 'ISIC_0027583' 'ISIC_0027059'
+ 'ISIC_0027481']",['nv' 'nv' 'nv' 'nv' 'nv'],['female' 'female' 'male' 'female' 'male']
+ISIC_0026074,bcc,female,"['ISIC_0029082' 'ISIC_0024947' 'ISIC_0027714' 'ISIC_0028542'
+ 'ISIC_0025971']",['bcc' 'bkl' 'nv' 'bcc' 'bcc'],['female' 'male' 'female' 'male' 'male']
+ISIC_0024557,nv,male,"['ISIC_0025294' 'ISIC_0025187' 'ISIC_0026252' 'ISIC_0025232'
+ 'ISIC_0025666']",['nv' 'nv' 'nv' 'nv' 'nv'],['female' 'female' 'male' 'male' 'male']
+ISIC_0024494,bkl,female,"['ISIC_0027287' 'ISIC_0026805' 'ISIC_0029033' 'ISIC_0025489'
+ 'ISIC_0027620']",['bkl' 'nv' 'mel' 'mel' 'mel'],['female' 'female' 'female' 'male' 'male']
+ISIC_0024393,nv,male,"['ISIC_0027092' 'ISIC_0024339' 'ISIC_0027369' 'ISIC_0028853'
+ 'ISIC_0024353']",['nv' 'nv' 'nv' 'nv' 'nv'],['male' 'male' 'female' 'female' 'male']
+ISIC_0029190,nv,female,"['ISIC_0025786' 'ISIC_0024387' 'ISIC_0027738' 'ISIC_0024821'
+ 'ISIC_0025653']",['nv' 'nv' 'nv' 'nv' 'nv'],['male' 'female' 'male' 'male' 'female']
+ISIC_0029238,mel,male,"['ISIC_0024369' 'ISIC_0025766' 'ISIC_0025182' 'ISIC_0026330'
+ 'ISIC_0026327']",['nv' 'mel' 'akiec' 'nv' 'akiec'],['male' 'male' 'female' 'male' 'female']
+ISIC_0027838,mel,female,"['ISIC_0027003' 'ISIC_0024936' 'ISIC_0029222' 'ISIC_0025472'
+ 'ISIC_0028487']",['nv' 'nv' 'nv' 'mel' 'nv'],['female' 'male' 'female' 'male' 'male']
+ISIC_0028810,nv,male,"['ISIC_0028317' 'ISIC_0027905' 'ISIC_0024869' 'ISIC_0028195'
+ 'ISIC_0025513']",['mel' 'bkl' 'nv' 'nv' 'bcc'],['female' 'female' 'male' 'female' 'male']
+ISIC_0026562,nv,female,"['ISIC_0026241' 'ISIC_0028301' 'ISIC_0027082' 'ISIC_0026640'
+ 'ISIC_0026518']",['nv' 'nv' 'nv' 'nv' 'nv'],['female' 'female' 'female' 'male' 'male']
+ISIC_0025400,nv,male,"['ISIC_0025300' 'ISIC_0028109' 'ISIC_0024782' 'ISIC_0028139'
+ 'ISIC_0025763']",['nv' 'mel' 'bkl' 'nv' 'nv'],['female' 'male' 'female' 'female' 'male']
+ISIC_0028282,nv,male,"['ISIC_0027491' 'ISIC_0028614' 'ISIC_0024309' 'ISIC_0028074'
+ 'ISIC_0026936']",['nv' 'nv' 'nv' 'nv' 'nv'],['female' 'female' 'male' 'male' 'female']
+ISIC_0026406,nv,female,"['ISIC_0025396' 'ISIC_0028995' 'ISIC_0026712' 'ISIC_0029054'
+ 'ISIC_0025640']",['nv' 'bkl' 'nv' 'nv' 'nv'],['female' 'female' 'female' 'male' 'male']
+ISIC_0028532,nv,male,"['ISIC_0025348' 'ISIC_0024872' 'ISIC_0028021' 'ISIC_0026415'
+ 'ISIC_0026070']",['nv' 'nv' 'nv' 'nv' 'bkl'],['male' 'male' 'female' 'male' 'female']
+ISIC_0026989,mel,male,"['ISIC_0027372' 'ISIC_0028506' 'ISIC_0026243' 'ISIC_0026616'
+ 'ISIC_0026127']",['nv' 'nv' 'nv' 'nv' 'nv'],['male' 'male' 'male' 'male' 'male']
+ISIC_0026434,nv,female,"['ISIC_0027384' 'ISIC_0028921' 'ISIC_0025560' 'ISIC_0028392'
+ 'ISIC_0028125']",['nv' 'nv' 'nv' 'nv' 'nv'],['male' 'male' 'female' 'male' 'female']
+ISIC_0027700,akiec,male,"['ISIC_0027397' 'ISIC_0025954' 'ISIC_0025414' 'ISIC_0025286'
+ 'ISIC_0025811']",['nv' 'df' 'mel' 'bkl' 'akiec'],['male' 'male' 'male' 'male' 'male']
+ISIC_0028224,akiec,female,"['ISIC_0028285' 'ISIC_0026729' 'ISIC_0024571' 'ISIC_0024646'
+ 'ISIC_0027506']",['mel' 'akiec' 'mel' 'akiec' 'akiec'],['male' 'male' 'male' 'female' 'female']
+ISIC_0026696,nv,female,"['ISIC_0028177' 'ISIC_0028491' 'ISIC_0024985' 'ISIC_0025754'
+ 'ISIC_0025404']",['nv' 'nv' 'nv' 'nv' 'nv'],['female' 'female' 'female' 'male' 'male']
+ISIC_0025825,akiec,female,"['ISIC_0025953' 'ISIC_0027172' 'ISIC_0026861' 'ISIC_0026194'
+ 'ISIC_0028593']",['akiec' 'akiec' 'bkl' 'akiec' 'bkl'],['male' 'male' 'female' 'male' 'female']
+ISIC_0024679,mel,male,"['ISIC_0026679' 'ISIC_0027149' 'ISIC_0026018' 'ISIC_0024358'
+ 'ISIC_0028261']",['bkl' 'mel' 'bkl' 'bkl' 'nv'],['female' 'male' 'male' 'female' 'female']
+ISIC_0028176,nv,male,"['ISIC_0028864' 'ISIC_0027207' 'ISIC_0028267' 'ISIC_0025496'
+ 'ISIC_0026185']",['nv' 'nv' 'nv' 'nv' 'nv'],['female' 'female' 'male' 'female' 'male']
+ISIC_0028968,mel,male,"['ISIC_0024739' 'ISIC_0028200' 'ISIC_0025539' 'ISIC_0025546'
+ 'ISIC_0024466']",['mel' 'bkl' 'akiec' 'mel' 'nv'],['male' 'male' 'male' 'male' 'male']
+ISIC_0025509,bcc,male,"['ISIC_0024452' 'ISIC_0024443' 'ISIC_0024572' 'ISIC_0028190'
+ 'ISIC_0026329']",['bcc' 'bcc' 'bcc' 'akiec' 'nv'],['male' 'male' 'female' 'male' 'female']
+ISIC_0026182,nv,female,"['ISIC_0026660' 'ISIC_0026657' 'ISIC_0029187' 'ISIC_0028399'
+ 'ISIC_0025610']",['nv' 'nv' 'nv' 'nv' 'nv'],['female' 'female' 'female' 'male' 'male']
+ISIC_0027727,df,male,"['ISIC_0027648' 'ISIC_0025811' 'ISIC_0025414' 'ISIC_0027814'
+ 'ISIC_0024575']",['df' 'akiec' 'mel' 'bcc' 'akiec'],['male' 'male' 'male' 'female' 'female']
+ISIC_0026583,nv,male,"['ISIC_0025952' 'ISIC_0025745' 'ISIC_0026471' 'ISIC_0028266'
+ 'ISIC_0027472']",['nv' 'nv' 'df' 'nv' 'nv'],['male' 'female' 'male' 'male' 'female']
+ISIC_0027266,nv,male,"['ISIC_0027265' 'ISIC_0029081' 'ISIC_0025505' 'ISIC_0024869'
+ 'ISIC_0027064']",['nv' 'mel' 'nv' 'nv' 'bkl'],['female' 'male' 'female' 'male' 'female']
+ISIC_0027055,nv,female,"['ISIC_0026681' 'ISIC_0026972' 'ISIC_0025272' 'ISIC_0025739'
+ 'ISIC_0027660']",['nv' 'nv' 'nv' 'nv' 'nv'],['male' 'male' 'female' 'female' 'female']
+ISIC_0028443,nv,male,"['ISIC_0029224' 'ISIC_0029287' 'ISIC_0024501' 'ISIC_0024613'
+ 'ISIC_0025190']",['nv' 'nv' 'nv' 'nv' 'nv'],['male' 'male' 'male' 'female' 'female']
+ISIC_0027722,bcc,male,"['ISIC_0026442' 'ISIC_0027788' 'ISIC_0025575' 'ISIC_0028113'
+ 'ISIC_0027601']",['bcc' 'bcc' 'bkl' 'bcc' 'bcc'],['male' 'female' 'male' 'male' 'female']
+ISIC_0026184,nv,male,"['ISIC_0024368' 'ISIC_0026641' 'ISIC_0027791' 'ISIC_0025282'
+ 'ISIC_0027220']",['nv' 'nv' 'nv' 'nv' 'nv'],['male' 'male' 'male' 'male' 'male']
+ISIC_0025068,bkl,male,"['ISIC_0027529' 'ISIC_0026263' 'ISIC_0028830' 'ISIC_0028652'
+ 'ISIC_0027156']",['akiec' 'bkl' 'bkl' 'bcc' 'nv'],['male' 'female' 'male' 'male' 'female']
+ISIC_0025828,nv,female,"['ISIC_0027056' 'ISIC_0026342' 'ISIC_0025042' 'ISIC_0027233'
+ 'ISIC_0026969']",['nv' 'nv' 'nv' 'nv' 'nv'],['male' 'male' 'male' 'female' 'female']
+ISIC_0026495,nv,male,"['ISIC_0024744' 'ISIC_0025397' 'ISIC_0026619' 'ISIC_0025486'
+ 'ISIC_0025114']",['nv' 'nv' 'nv' 'nv' 'nv'],['female' 'female' 'male' 'female' 'male']
+ISIC_0027661,nv,male,"['ISIC_0026415' 'ISIC_0027610' 'ISIC_0026837' 'ISIC_0026812'
+ 'ISIC_0027599']",['nv' 'nv' 'nv' 'nv' 'nv'],['male' 'male' 'male' 'male' 'female']
+ISIC_0028642,mel,male,"['ISIC_0028950' 'ISIC_0025821' 'ISIC_0025869' 'ISIC_0026289'
+ 'ISIC_0024766']",['nv' 'nv' 'nv' 'nv' 'nv'],['female' 'male' 'male' 'female' 'male']
+ISIC_0028489,mel,male,"['ISIC_0024352' 'ISIC_0025316' 'ISIC_0026333' 'ISIC_0025640'
+ 'ISIC_0026945']",['nv' 'mel' 'nv' 'nv' 'nv'],['female' 'female' 'female' 'male' 'male']
+ISIC_0026975,nv,female,"['ISIC_0027028' 'ISIC_0027516' 'ISIC_0026344' 'ISIC_0028956'
+ 'ISIC_0029150']",['nv' 'nv' 'nv' 'nv' 'nv'],['male' 'male' 'male' 'female' 'female']
+ISIC_0024436,bcc,male,"['ISIC_0027007' 'ISIC_0029082' 'ISIC_0024740' 'ISIC_0028673'
+ 'ISIC_0025299']",['nv' 'bcc' 'bkl' 'nv' 'bcc'],['female' 'female' 'male' 'female' 'male']
+ISIC_0026494,nv,female,"['ISIC_0024885' 'ISIC_0028980' 'ISIC_0024654' 'ISIC_0025081'
+ 'ISIC_0026693']",['bcc' 'bcc' 'akiec' 'mel' 'vasc'],['female' 'male' 'female' 'female' 'male']
+ISIC_0024373,nv,male,"['ISIC_0026937' 'ISIC_0028801' 'ISIC_0026932' 'ISIC_0027547'
+ 'ISIC_0025749']",['nv' 'nv' 'nv' 'nv' 'nv'],['female' 'male' 'male' 'female' 'male']
+ISIC_0027177,nv,male,"['ISIC_0026344' 'ISIC_0024348' 'ISIC_0024542' 'ISIC_0027315'
+ 'ISIC_0026896']",['nv' 'nv' 'nv' 'nv' 'nv'],['male' 'female' 'male' 'male' 'female']
+ISIC_0027371,bcc,male,"['ISIC_0026871' 'ISIC_0026226' 'ISIC_0028393' 'ISIC_0027473'
+ 'ISIC_0027093']",['bkl' 'nv' 'akiec' 'bcc' 'bcc'],['male' 'male' 'male' 'female' 'female']
+ISIC_0027822,mel,male,"['ISIC_0024431' 'ISIC_0026656' 'ISIC_0027033' 'ISIC_0026754'
+ 'ISIC_0026532']",['bcc' 'bcc' 'mel' 'mel' 'bkl'],['male' 'male' 'male' 'female' 'female']
+ISIC_0027525,bcc,male,"['ISIC_0025376' 'ISIC_0024445' 'ISIC_0028815' 'ISIC_0028542'
+ 'ISIC_0028963']",['bkl' 'bkl' 'bcc' 'bcc' 'nv'],['male' 'male' 'female' 'male' 'female']
+ISIC_0024440,nv,male,"['ISIC_0025859' 'ISIC_0026904' 'ISIC_0024536' 'ISIC_0027962'
+ 'ISIC_0025232']",['nv' 'nv' 'nv' 'nv' 'nv'],['female' 'male' 'female' 'female' 'male']
+ISIC_0026221,nv,male,"['ISIC_0028949' 'ISIC_0027824' 'ISIC_0026183' 'ISIC_0025263'
+ 'ISIC_0024491']",['nv' 'nv' 'nv' 'nv' 'nv'],['male' 'male' 'male' 'male' 'male']
+ISIC_0028188,vasc,female,"['ISIC_0025170' 'ISIC_0029008' 'ISIC_0028797' 'ISIC_0025251'
+ 'ISIC_0028540']",['nv' 'nv' 'bkl' 'nv' 'nv'],['male' 'male' 'male' 'female' 'female']
+ISIC_0027475,nv,female,"['ISIC_0025424' 'ISIC_0029197' 'ISIC_0028744' 'ISIC_0027797'
+ 'ISIC_0028135']",['nv' 'nv' 'nv' 'mel' 'nv'],['female' 'male' 'male' 'female' 'female']
+ISIC_0027741,nv,male,"['ISIC_0026686' 'ISIC_0026837' 'ISIC_0028547' 'ISIC_0026536'
+ 'ISIC_0024685']",['nv' 'nv' 'nv' 'nv' 'nv'],['male' 'male' 'male' 'female' 'female']
+ISIC_0024540,nv,female,"['ISIC_0027948' 'ISIC_0026516' 'ISIC_0024734' 'ISIC_0024918'
+ 'ISIC_0025300']",['nv' 'mel' 'nv' 'mel' 'nv'],['female' 'female' 'male' 'male' 'female']
+ISIC_0024908,nv,male,"['ISIC_0027684' 'ISIC_0025505' 'ISIC_0027265' 'ISIC_0027323'
+ 'ISIC_0026558']",['nv' 'nv' 'nv' 'nv' 'mel'],['female' 'female' 'female' 'male' 'male']
+ISIC_0025497,nv,female,"['ISIC_0028458' 'ISIC_0025481' 'ISIC_0024631' 'ISIC_0027962'
+ 'ISIC_0026244']",['nv' 'nv' 'nv' 'nv' 'nv'],['female' 'male' 'female' 'female' 'male']
+ISIC_0026022,nv,female,"['ISIC_0029187' 'ISIC_0029296' 'ISIC_0025367' 'ISIC_0026633'
+ 'ISIC_0026314']",['nv' 'nv' 'nv' 'nv' 'mel'],['female' 'female' 'female' 'male' 'male']
+ISIC_0024537,mel,male,"['ISIC_0027352' 'ISIC_0028325' 'ISIC_0027387' 'ISIC_0026209'
+ 'ISIC_0027649']",['mel' 'mel' 'mel' 'nv' 'bkl'],['male' 'male' 'female' 'male' 'female']
+ISIC_0027927,nv,male,"['ISIC_0026331' 'ISIC_0027879' 'ISIC_0026648' 'ISIC_0027556'
+ 'ISIC_0025048']",['nv' 'nv' 'nv' 'nv' 'nv'],['male' 'female' 'female' 'female' 'male']
+ISIC_0025377,nv,male,"['ISIC_0025107' 'ISIC_0028813' 'ISIC_0025435' 'ISIC_0024376'
+ 'ISIC_0027054']",['nv' 'nv' 'nv' 'nv' 'nv'],['female' 'male' 'female' 'male' 'female']
+ISIC_0027809,nv,female,"['ISIC_0029185' 'ISIC_0026035' 'ISIC_0026026' 'ISIC_0026176'
+ 'ISIC_0025288']",['nv' 'nv' 'nv' 'nv' 'nv'],['male' 'male' 'male' 'female' 'female']
+ISIC_0029230,bcc,male,"['ISIC_0027049' 'ISIC_0027478' 'ISIC_0029030' 'ISIC_0024550'
+ 'ISIC_0027112']",['nv' 'bcc' 'nv' 'bcc' 'nv'],['female' 'male' 'female' 'male' 'female']
+ISIC_0026845,bcc,male,"['ISIC_0025352' 'ISIC_0025735' 'ISIC_0024967' 'ISIC_0028488'
+ 'ISIC_0028693']",['nv' 'nv' 'mel' 'nv' 'bcc'],['male' 'male' 'male' 'female' 'female']
+ISIC_0028226,nv,male,"['ISIC_0028109' 'ISIC_0026083' 'ISIC_0024664' 'ISIC_0027174'
+ 'ISIC_0028139']",['mel' 'akiec' 'nv' 'mel' 'nv'],['male' 'male' 'female' 'male' 'female']

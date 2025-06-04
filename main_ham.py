@@ -31,7 +31,12 @@ if __name__ == "__main__":
         "sensitivity_groups_results": [],
     }
 
-    for i, row in df_test.iterrows():
+
+    df_sample = df_test.sample(n=100, random_state=42).reset_index()  
+    for i, row in df_sample.iterrows():
+        if i == 100:
+            break
+
         name_query, features_query, label_query, sensitive_query = row["name"], row["features"], row["class"], row["sex"]
 
         names_results, sensitives_results, labels_results = handler.retrieve_similar_images_kl_fair_ranking(features_query)
@@ -44,6 +49,7 @@ if __name__ == "__main__":
         results["sensitivity_groups_results"].append(sensitives_results)
     
     df_results = pd.DataFrame(results)
+    df_results.to_csv("results_ham.csv", index=False)
 
     accuracy = (df_results["label_query"] == df_results["labels_results"].apply(lambda x: x[0] if len(x) > 0 else None)).mean()
     print(f"Accuracy (top-1): {accuracy:.4f}")
