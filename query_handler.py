@@ -202,6 +202,57 @@ class QueryHandlerHAM:
                 best_set = subset
 
         return self.db_dataframe["name"].to_numpy()[best_set], db_sensitive_features[best_set]
+    
+
+    def retrieve_similar_images_gini_fair_ranking(self, query_features, top_k=5, alpha=0.5):
+        db_features = np.vstack(self.db_dataframe["features"].values)
+        query_features = query_features.reshape(1, -1)
+
+        db_sensitive_features = self.db_dataframe["sex"].to_numpy()
+        groups_unique = list(set(db_sensitive_features))
+
+        if len(groups_unique) < 2:
+            raise ValueError("There must be at least two unique groups in the database for this method to work.")
+        
+        group_a, group_b = groups_unique[0], groups_unique[1]
+
+        similarities = cosine_similarity(query_features, db_features).flatten()
+        candidate_indices = np.argsort(-similarities)[:30]
+
+        best_set = None
+        best_score = -np.inf
+
+        for subset in combinations(candidate_indices, top_k):
+            subset = list(subset)
+            subset_sensitive = db_sensitive_features[subset]
+
+            group_a_count = (subset_sensitive == group_a).sum()
+            group_b_count = (subset_sensitive == group_b).sum()
+
+            group_counts = np.array([group_a_count, group_b_count])
+            gini_index = self.gini_index(group_counts)
+            
+            avg_similarity = np.mean(similarities[subset])
+            score = avg_similarity - alpha * gini_index
+
+            if score > best_score:
+                best_score = score
+                best_set = subset
+            
+        return self.db_dataframe["name"].to_numpy()[best_set], db_sensitive_features[best_set]
+
+
+
+    def gini_index(self, group_counts):
+        values = np.array(group_counts)
+        if np.sum(values) == 0:
+            return 0
+        sorted_values = np.sort(values)
+        n = len(values)
+        cumulative = np.cumsum(sorted_values)
+        gini = (n + 1 - 2 * np.sum(cumulative) / cumulative[-1]) / n
+        return gini
+
 
     def calculate_all_distances(self, query):
         query_features = self.feture_extractor.extract_features(img=query)
@@ -265,7 +316,27 @@ if __name__ == '__main__':
     query_handler = QueryHandlerHAM(path_pkl_train, path_metadata)
     
 
-    print(query_handler.retrieve_similar_images_minimum_group_quota(random_feature))
-    print(query_handler.retrieve_similar_images_wheighted_fair_ranking(random_feature))
-    print(query_handler.retrieve_similar_images_kl_fair_ranking(random_feature))
+    names, groups = query_handler.retrieve_similar_images_minimum_group_quota(random_feature)
+    print("Minimum Group Quota Results:")
+    for name, group in zip(names, groups):
+        print(f"Image: {name}, Group: {group}")
+    print("-" * 40)
+
+    names, groups = query_handler.retrieve_similar_images_wheighted_fair_ranking(random_feature)
+    print("Weighted Fair Ranking Results:")
+    for name, group in zip(names, groups):
+        print(f"Image: {name}, Group: {group}")
+    print("-" * 40)
+
+    names, groups = query_handler.retrieve_similar_images_kl_fair_ranking(random_feature)
+    print("KL Fair Ranking Results:")
+    for name, group in zip(names, groups):
+        print(f"Image: {name}, Group: {group}")
+    print("-" * 40)
+
+    names, groups = query_handler.retrieve_similar_images_gini_fair_ranking(random_feature)
+    print("Gini Fair Ranking Results:")
+    for name, group in zip(names, groups):
+        print(f"Image: {name}, Group: {group}")
+    print("-" * 40)
 
