@@ -5,6 +5,8 @@ import pandas as pd
 import numpy as np
 import os
 from sklearn.metrics.pairwise import cosine_similarity
+from itertools import combinations
+from scipy.special import rel_entr
 #from feature_similarity import (
     
 #)
@@ -126,6 +128,80 @@ class QueryHandlerHAM:
 
         return self.db_dataframe["name"].to_numpy()[ranked_indices][:top_k], db_sensitive_features[ranked_indices][:top_k]
 
+    def retrieve_similar_images_kl_fair_ranking(self, query_features, top_k=5, alpha=0.5):
+        """
+        Esta função recupera as imagens mais similares a uma consulta, balanceando similaridade e equidade entre dois grupos sensíveis usando uma métrica baseada em divergência KL.
+
+        A função busca garantir que o conjunto de imagens retornadas seja não apenas similar à consulta (com base na similaridade do cosseno), mas também justo em relação à distribuição dos grupos sensíveis (por exemplo, sexo). Para isso, ela utiliza a divergência KL para medir o quão distante a distribuição dos grupos no conjunto selecionado está da distribuição ideal (balanceada).
+
+        Funcionamento:
+            1. Calcula a similaridade do cosseno entre a imagem de consulta e todas as imagens do banco.
+            2. Seleciona os 30 candidatos mais similares.
+            3. Gera todas as combinações possíveis de tamanho `top_k` entre esses candidatos.
+            4. Para cada combinação, calcula:
+            - A média das similaridades.
+            - A divergência KL entre a distribuição real dos grupos sensíveis e a distribuição ideal (balanceada).
+            - Um escore combinado: média da similaridade menos `alpha` vezes a divergência KL.
+            5. Retorna a combinação com o maior escore combinado.
+
+        Parâmetros:
+            query_features (np.ndarray): Vetor de características da imagem de consulta.
+            top_k (int, opcional): Número de imagens a serem recuperadas. Padrão é 5.
+            alpha (float, opcional): Parâmetro de balanceamento entre similaridade e equidade. Valores maiores priorizam mais a equidade. Padrão é 0.5.
+
+        Retorno:
+            Tuple[np.ndarray, np.ndarray]:
+            - Array com os nomes das imagens selecionadas.
+            - Array com os rótulos dos grupos sensíveis das imagens selecionadas.
+
+        Exceções:
+            ValueError: Caso haja menos de dois grupos sensíveis únicos no banco de dados.
+
+        Observações:
+            - O atributo sensível considerado é 'sex'.
+            - O método pode ser computacionalmente custoso para valores altos de `top_k` devido à geração de combinações.
+        """
+        db_features = np.vstack(self.db_dataframe["features"].values)
+        query_features = query_features.reshape(1, -1)
+
+        db_sensitive_features = self.db_dataframe["sex"].to_numpy()
+        groups_unique = list(set(db_sensitive_features))
+
+        if len(groups_unique) < 2:
+            raise ValueError("There must be at least two unique groups in the database for this method to work.")
+        
+        group_a, group_b = groups_unique[0], groups_unique[1]
+
+        similarities = cosine_similarity(query_features, db_features).flatten()
+        candidate_indices = np.argsort(-similarities)[:30]
+
+        ideal_dist = np.array([0.5, 0.5])  # 50% A, 50% B
+        best_set = None
+        best_score = -np.inf
+
+        for subset in combinations(candidate_indices, top_k):
+            subset = list(subset)
+            subset_sensitive = db_sensitive_features[subset]
+
+            group_a_count = (subset_sensitive == group_a).sum()
+            group_b_count = (subset_sensitive == group_b).sum()
+
+            real_dist = np.array([group_a_count, group_b_count]) / top_k
+
+            epsilon = 1e-10
+            real_dist = np.clip(real_dist, epsilon, 1)
+            ideal_dist = np.clip(ideal_dist, epsilon, 1)
+
+            kl_div = np.sum(rel_entr(real_dist, ideal_dist))
+
+            avg_similarity = np.mean(similarities[subset])
+            score = avg_similarity - alpha * kl_div
+
+            if score > best_score:
+                best_score = score
+                best_set = subset
+
+        return self.db_dataframe["name"].to_numpy()[best_set], db_sensitive_features[best_set]
 
     def calculate_all_distances(self, query):
         query_features = self.feture_extractor.extract_features(img=query)
@@ -191,4 +267,5 @@ if __name__ == '__main__':
 
     print(query_handler.retrieve_similar_images_minimum_group_quota(random_feature))
     print(query_handler.retrieve_similar_images_wheighted_fair_ranking(random_feature))
+    print(query_handler.retrieve_similar_images_kl_fair_ranking(random_feature))
 
