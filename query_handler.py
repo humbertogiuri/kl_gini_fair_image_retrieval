@@ -7,6 +7,7 @@ import os
 from sklearn.metrics.pairwise import cosine_similarity
 from itertools import combinations
 from scipy.special import rel_entr
+from scipy.stats import entropy
 #from feature_similarity import (
     
 #)
@@ -242,6 +243,49 @@ class QueryHandlerHAM:
         return self.db_dataframe["name"].to_numpy()[best_set], db_sensitive_features[best_set]
 
 
+    def retrieve_similar_images_entropy_fair_ranking(self, query_features, top_k=5, alpha=0.5):
+        db_features = np.vstack(self.db_dataframe["features"].values)
+        query_features = query_features.reshape(1, -1)
+
+        db_sensitive_features = self.db_dataframe["sex"].to_numpy()
+        groups_unique = list(set(db_sensitive_features))
+
+        if len(groups_unique) < 2:
+            raise ValueError("There must be at least two unique groups in the database for this method to work.")
+        
+        group_a, group_b = groups_unique[0], groups_unique[1]
+
+        similarities = cosine_similarity(query_features, db_features).flatten()
+        candidate_indices = np.argsort(-similarities)[:30]
+
+        best_set = None
+        best_score = -np.inf
+
+        for subset in combinations(candidate_indices, top_k):
+            subset = list(subset)
+            subset_sensitive = db_sensitive_features[subset]
+
+            group_a_count = (subset_sensitive == group_a).sum()
+            group_b_count = (subset_sensitive == group_b).sum()
+
+            group_counts = np.array([group_a_count, group_b_count])
+
+            fairness_entropy = self.normalized_entropy(group_counts)
+            avg_similarity = np.mean(similarities[subset])
+
+            score = avg_similarity + alpha * fairness_entropy
+
+            if score > best_score:
+                best_score = score
+                best_set = subset
+        
+        return self.db_dataframe["name"].to_numpy()[best_set], db_sensitive_features[best_set]
+    
+
+    def normalized_entropy(self, counts):
+        counts = np.array(counts)
+        probs = counts / np.sum(counts)
+        return entropy(probs, base=2) / np.log2(len(counts))
 
     def gini_index(self, group_counts):
         values = np.array(group_counts)
@@ -336,6 +380,12 @@ if __name__ == '__main__':
 
     names, groups = query_handler.retrieve_similar_images_gini_fair_ranking(random_feature)
     print("Gini Fair Ranking Results:")
+    for name, group in zip(names, groups):
+        print(f"Image: {name}, Group: {group}")
+    print("-" * 40)
+
+    names, groups = query_handler.retrieve_similar_images_entropy_fair_ranking(random_feature)
+    print("Entropy Fair Ranking Results:")
     for name, group in zip(names, groups):
         print(f"Image: {name}, Group: {group}")
     print("-" * 40)
